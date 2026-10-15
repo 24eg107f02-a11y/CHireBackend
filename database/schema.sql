@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS jobs (
 CREATE TABLE IF NOT EXISTS job_required_skills (
     job_id BIGINT NOT NULL,
     skill VARCHAR(80) NOT NULL,
-    INDEX ix_job_required_skills_job (job_id),
+    PRIMARY KEY (job_id, skill),
     CONSTRAINT fk_job_required_skills_job FOREIGN KEY (job_id) REFERENCES jobs (id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
