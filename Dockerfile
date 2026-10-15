@@ -17,5 +17,5 @@ COPY --from=build --chown=campushire:campushire /workspace/target/campushire-api
 USER campushire
 EXPOSE 8080
 HEALTHCHECK --interval=20s --timeout=5s --start-period=45s --retries=5 \
-    CMD-SHELL curl --fail --silent "http://localhost:${PORT:-8080}/actuator/health/readiness" || exit 1
+    CMD curl --fail --silent "http://localhost:${PORT:-8080}/actuator/health/readiness" || exit 1
 ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "/app/app.jar"]
