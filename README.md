@@ -118,7 +118,7 @@ The root `render.yaml` defines a Docker web service for the Spring Boot API usin
 
 The backend uses MySQL and this Blueprint does not provision a database. Do not put database credentials or secrets in `render.yaml` or commit them to source control. Render assigns the service URL after creation; verify it responds at `/actuator/health/readiness`.
 
-The root `netlify.toml` configures the existing frontend build from `frontend/`. In the Netlify site's environment variable settings, set `VITE_API_URL` to the Render service's HTTPS origin (for example, `https://campushire-api.onrender.com`, without a trailing slash), then trigger a new deploy. The Render Blueprint already restricts browser API access to `https://24eg107f02.netlify.app`; if the Netlify site's domain changes, update `CORS_ALLOWED_ORIGINS` in Render to the new origin and redeploy the API.
+The root `netlify.toml` configures the frontend build from `frontend/` and sets `VITE_API_URL` to `https://chirebackend.onrender.com`. If the Render service URL changes, update that value and redeploy the frontend. The Render service allows browser API access from `https://24eg107f02.netlify.app`; if the Netlify site's domain changes, update `CORS_ALLOWED_ORIGINS` in Render to the new origin and redeploy the API.
 
 The Render Blueprint uses the free web-service plan, which may spin down when idle. This setup does not create a MySQL database or push code to either hosting provider; the repository must be connected to Render and Netlify, and the database must be hosted separately.
 
