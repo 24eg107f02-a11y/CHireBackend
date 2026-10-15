@@ -112,9 +112,8 @@ Keep the backend running in its own terminal. Vite is configured to allow local 
 
 ## Deploy the frontend and API to Netlify and Render
 
-The root `render.yaml` defines a Docker web service for the Spring Boot API. Connect this repository in Render and create a Blueprint from that file. Render will generate `JWT_SECRET`; when prompted for the unsynced environment variables, provide:
+The root `render.yaml` defines a Docker web service for the Spring Boot API using the repository-root `Dockerfile`. Connect this repository in Render and create a Blueprint from that file. Render will generate `JWT_SECRET`. The Aiven MySQL JDBC URL is prefilled in the Blueprint; if you created the Render web service manually instead, set `DB_URL` to `jdbc:mysql://mysql-14a2be27-anurag-bb4a.j.aivencloud.com:23883/defaultdb?sslMode=REQUIRED&serverTimezone=UTC`. Set the following remaining environment variables from the Aiven console:
 
-- `DB_URL` — JDBC URL for a reachable hosted MySQL database, including the database name and required connection options
 - `DB_USERNAME` and `DB_PASSWORD` — credentials for that database
 
 The backend uses MySQL and this Blueprint does not provision a database. Do not put database credentials or secrets in `render.yaml` or commit them to source control. Render assigns the service URL after creation; verify it responds at `/actuator/health/readiness`.
