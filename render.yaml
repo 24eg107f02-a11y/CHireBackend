@@ -3,6 +3,7 @@ services:
     name: campushire-api
     runtime: docker
     plan: free
+    autoDeploy: true
     dockerfilePath: ./Dockerfile
     healthCheckPath: /actuator/health/readiness
     envVars:
